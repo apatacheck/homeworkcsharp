@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.IO;
-
+//Вывести на экран в порядке возрастания все элементы, меньшие заданного числа,
+//увеличив их в три раза
 class Program
 {
     static void Main()
