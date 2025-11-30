@@ -11,12 +11,11 @@ class Program
 
         var numbers = File.ReadAllText("input1.txt").Split();
 
-        var result =
-            from x in numbers
-            let n = int.Parse(x)
-            where n < key
-            orderby n
-            select n * 3;
+        var result = numbers
+            .Select(x => int.Parse(x))
+            .Where(n => n < key)
+            .OrderBy(n => n)
+            .Select(n => n * 3);
 
         File.WriteAllText("output.txt", string.Join(" ", result));
 
