@@ -6,7 +6,7 @@ class Money
 {
     private int banknote;
     private int count;
-    private readonly int[] par = { 5, 10, 50, 100, 200, 500, 1000, 2000, 5000 };
+    private int[] par = { 5, 10, 50, 100, 200, 500, 1000, 2000, 5000 };
 
     //5. Свойства 
     //позволяющее получать доступ к закрытым полям класса (доступное для чтения и записи с допустимыми значениями);
@@ -198,11 +198,16 @@ class Program
                 file.WriteLine("Оператор ! : " + (!tmp));
                 tmp = tmp + 3;
                 file.WriteLine("После +3: " + tmp);
+                tmp.Banknote = 1000;
+                tmp.Count = 10;
+                file.WriteLine("Изменение по свойствам: " + tmp.ToString());
 
                 Money copy = new Money(m);
                 file.WriteLine("Equals с копией: " + m.Equals(copy));
                 file.WriteLine("Equals не с копией: " + m.Equals(tmp));
                 file.WriteLine("GetHashCode: " + m.GetHashCode());
+                file.WriteLine("GetType: " + m.GetType());
+
 
                 file.WriteLine();
             }
