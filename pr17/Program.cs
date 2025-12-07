@@ -126,7 +126,7 @@ class Money
         }
     }
 
-    //7. Перегрузка
+    //7. Перегрузка 
 
     public static Money operator ++(Money m) //увеличивает поле count;
     {
@@ -167,6 +167,8 @@ class Program
         string[] lines = File.ReadAllLines("test.txt");
         foreach (string line in lines)
         {
+            if (string.IsNullOrWhiteSpace(line))
+                continue; 
             string[] p = line.Split();
             int b = int.Parse(p[0]);
             int c = int.Parse(p[1]);
@@ -180,7 +182,7 @@ class Program
             foreach (Money m in list)
             {
                 file.WriteLine("ToString(): " + m.ToString());
-                file.WriteLine("Total: " + m.Total);
+              
 
                 file.WriteLine("Можно ли купить товар за 1200? " + m.CanBuy(1200));
                 file.WriteLine("Сколько можно купить товаров по 150? " + m.HowManyItems(150));
