@@ -50,18 +50,18 @@ class Program
         Console.Write("Введите возраст N: ");
         int Age = int.Parse(Console.ReadLine()!);
 
-        List<Toy> Toys = Input("test1.txt");
+        List<Toy> Toys = Input("test.txt");
         var corrToys =
             from toy in Toys
-            where toy.minAge > Age
-            orderby toy.Price 
+            where toy.minAge > Age //предназначены для детей старше N лет
+            orderby toy.Price  //отсортировав по cтоимости
             select toy;
 
         using (StreamWriter fileOut = new StreamWriter("output.txt"))
         {
            foreach (var toy in corrToys)
            {
-                    fileOut.WriteLine($"Название: {toy.Name}; Цена: {toy.Price}; Мин.возраст: {toy.minAge}; Макс.возраст: {toy.maxAge}");
+                fileOut.WriteLine($"Название: {toy.Name}; Цена: {toy.Price}; Мин.возраст: {toy.minAge}; Макс.возраст: {toy.maxAge}");
            }
             
         }

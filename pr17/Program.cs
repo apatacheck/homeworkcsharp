@@ -130,14 +130,14 @@ class Money
 
     public static Money operator ++(Money m) //увеличивает поле count;
     {
-        m.count++;
-        return m;
+        //m.count++;
+        return new Money(m.banknote, m.count + 1);
     }
 
     public static Money operator --(Money m) //уменьшает поле count;
     {
         if (m.count > 0) m.count--;
-        return m;
+        return new Money(m.banknote, m.count - 1);
     }
 
     //операции !: возвращает значение true, если поле count не нулевое, иначе false;
@@ -149,9 +149,16 @@ class Money
     //операции бинарный +: добавляет к значению поля count значение скаляра
     public static Money operator +(Money m, int value)
     {
-        m.count += value;
-        if (m.count < 0) m.count = 0;
-        return m;
+        if (m.count + value < 0)
+        {
+            return new Money(m.banknote, 0);
+        }
+        return new Money(m.banknote, m.count + value);
+    }
+
+    public static Money operator +(int value, Money m)
+    {
+        return m + value;
     }
 }
 
@@ -199,7 +206,10 @@ class Program
                
                 file.WriteLine("Оператор ! : " + (!tmp));
                 tmp = tmp + 3;
-                file.WriteLine("После +3: " + tmp);
+                file.WriteLine("Money + 3: " + tmp);
+                tmp = 3 + tmp;
+                file.WriteLine("3 + Money: " + tmp);
+
                 tmp.Banknote = 1000;
                 tmp.Count = 10;
                 file.WriteLine("Изменение по свойствам: " + tmp.ToString());
