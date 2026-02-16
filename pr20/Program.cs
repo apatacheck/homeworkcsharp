@@ -3,10 +3,10 @@ using System.IO;
 
 namespace Example
 {
-    public class Node
+    public class Node // Класс элемента списка
     {
-        private object inf;
-        private Node next;
+        private object inf; //значение элемента
+        private Node next; //ссылка на следующий элемент
 
         public Node(object nodeInfo)
         {
@@ -33,14 +33,14 @@ namespace Example
         private Node tail;
         private Node temp;
 
-        public List()
+        public List() //инициализация списка
         {
             head = null;
             tail = null;
             temp = null;
         }
 
-        public void AddEnd(object nodeInfo)
+        public void AddEnd(object nodeInfo) //добавление в конец
         {
             temp = new Node(nodeInfo);
             if (head == null)
@@ -50,60 +50,52 @@ namespace Example
             }
             else
             {
-                tail.Next = temp;
-                tail = temp;
+                tail.Next = temp; //переназначение ссылки после хвоста на temp
+                tail = temp; //хвост - последний добавленный элемент
             }
         }
 
-        public object TakeBegin()
+        public object TakeBegin() // извлечение из головы
         {
             if (head == null)
                 throw new Exception("Список пуст");
 
-            temp = head;
-            head = head.Next;
+            temp = head; //сохраняем inf для возвращения
+            head = head.Next; // голова - следующий после бывшей головы элемент
             if (head == null)
                 tail = null;
 
             object value = temp.Inf;
             return value;
         }
-
-        public Node GetHead()
+        public Node GetHead() //геттер для закрытого поля головы
         {
-            return head;
+            return head; 
         }
 
-
-        public void Insert(object x, object y)
+        public void Insert(object x, object y) //После каждого элемента со значением х вставить элемент со значением у
         {
-            if (head == null) return;  // пустой список
+            if (head == null) return;
 
-            temp = head;  // используем temp для обхода
-
+            temp = head;
             while (temp != null)
             {
-                if (((IComparable)temp.Inf).CompareTo(x) == 0)
+                if (((IComparable)temp.Inf).CompareTo(x) == 0)  //проходимся по List и ищем элемент с inf = x
                 {
-                    // Создаем новый узел
-                    Node newNode = new Node(y);
-
-                    // Вставляем после temp
-                    newNode.Next = temp.Next;
-                    temp.Next = newNode;
-
-                    // Если вставляли в конец, обновляем tail
+                    Node newNode = new Node(y); 
+                    newNode.Next = temp.Next; // ссылка на следующий элемент после newNode устанавливаем на следующий элемент после x
+                    temp.Next = newNode; //ссылка на элемент после temp указывает newNode 
+                    //т.е. newNode вставляется после temp. newNode ссылается на элемент, который раньше находился после temp,а temp ссылается на newNode
                     if (temp == tail)
                     {
                         tail = newNode;
                     }
 
-                    // Переходим через вставленный элемент
-                    temp = newNode.Next;
+                    temp = newNode.Next; // переход к следующему элементу после вставленного 
                 }
                 else
                 {
-                    temp = temp.Next;
+                    temp = temp.Next; //проход по списку дальше, если элемент с нужным значением не был найден
                 }
             }
         }
@@ -118,85 +110,56 @@ namespace Example
             }
             Console.WriteLine();
         }
-
-        public List Copy()
-        {
-            List newList = new List();
-            temp = head;
-            while (temp != null)
-            {
-                newList.AddEnd(temp.Inf);
-                temp = temp.Next;
-            }
-            return newList;
-        }
     }
 
     public class Program
     {
         static void Main()
         {
-            List list = new List();
-
-            using (StreamReader fileIn = new StreamReader("input.txt"))
+         
+            string[] originalNumbers; 
+            using (StreamReader fileIn = new StreamReader("input.txt")) //читаем файл с числами
             {
                 string content = fileIn.ReadToEnd();
-                string[] numbers = content.Split(new char[] { ' ', '\t', '\n', '\r' },
-                                                StringSplitOptions.RemoveEmptyEntries);
-                foreach (string num in numbers)
-                    list.AddEnd(int.Parse(num));
+                originalNumbers = content.Split();
+                                               
             }
 
 
-            List originalList = list.Copy();
+            using (StreamWriter fileOut = new StreamWriter("output.txt")) // переписываем исходный список в файл
+            {
+                foreach (string num in originalNumbers)
+                    fileOut.Write(num + " ");
+                fileOut.WriteLine();
+            }
+
+
+            List list = new List();
+            foreach (string num in originalNumbers) // создание List 
+                list.AddEnd(int.Parse(num));
 
             Console.Write("Введите число для поиска x=");
             int x = int.Parse(Console.ReadLine()!);
             Console.Write("Введите число для вставки y=");
-            int y = int.Parse(Console.ReadLine()!);
-
+            int y = int.Parse(Console.ReadLine()!);     
             Console.WriteLine("\nИсходный список:");
-            originalList.Show();
-
-
-            Node current = list.GetHead();
-            while (current != null)
-            {
-                if (((IComparable)current.Inf).CompareTo(x) == 0)
-                {
-                    Node newNode = new Node(y);
-                    newNode.Next = current.Next;
-                    current.Next = newNode;
-                    current = newNode.Next;
-                }
-                else
-                {
-                    current = current.Next;
-                }
-            }
-
+            list.Show();
+            list.Insert(x, y); 
             Console.WriteLine("\nИзмененный список:");
             list.Show();
 
-            using (StreamWriter fileOut = new StreamWriter("output.txt"))
+       
+            using (StreamWriter fileOut = new StreamWriter("output.txt", true)) //вписываем измененный список в файл
             {
-                void WriteListToFile(List source)
+                Node node = list.GetHead();
+                while (node != null)
                 {
-                    Node node = source.GetHead();
-                    while (node != null)
-                    {
-                        fileOut.Write(node.Inf + " ");
-                        node = node.Next;
-                    }
+                    fileOut.Write(node.Inf + " ");
+                    node = node.Next;
                 }
-
-                WriteListToFile(originalList);
-                fileOut.WriteLine();
-                WriteListToFile(list);
             }
 
             Console.WriteLine("\nРезультат записан в output.txt");
         }
-
     }
 }
