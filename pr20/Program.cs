@@ -3,32 +3,33 @@ using System.IO;
 
 namespace Example
 {
-    public class Node // Класс элемента списка
-    {
-        private object inf; //значение элемента
-        private Node next; //ссылка на следующий элемент
-
-        public Node(object nodeInfo)
-        {
-            inf = nodeInfo;
-            next = null;
-        }
-
-        public Node Next
-        {
-            get { return next; }
-            set { next = value; }
-        }
-
-        public object Inf
-        {
-            get { return inf; }
-            set { inf = value; }
-        }
-    }
 
     public class List
     {
+        private class Node // Класс элемента списка
+        {
+            private object inf; //значение элемента
+            private Node next; //ссылка на следующий элемент
+
+            public Node(object nodeInfo)
+            {
+                inf = nodeInfo;
+                next = null;
+            }
+
+            public Node Next
+            {
+                get { return next; }
+                set { next = value; }
+            }
+
+            public object Inf
+            {
+                get { return inf; }
+                set { inf = value; }
+            }
+        }
+
         private Node head;
         private Node tail;
         private Node temp;
@@ -37,7 +38,7 @@ namespace Example
         {
             head = null;
             tail = null;
-            temp = null;
+
         }
 
         public void AddEnd(object nodeInfo) //добавление в конец
@@ -68,10 +69,6 @@ namespace Example
             object value = temp.Inf;
             return value;
         }
-        public Node GetHead() //геттер для закрытого поля головы
-        {
-            return head; 
-        }
 
         public void Insert(object x, object y) //После каждого элемента со значением х вставить элемент со значением у
         {
@@ -82,7 +79,7 @@ namespace Example
             {
                 if (((IComparable)temp.Inf).CompareTo(x) == 0)  //проходимся по List и ищем элемент с inf = x
                 {
-                    Node newNode = new Node(y); 
+                    Node newNode = new Node(y);
                     newNode.Next = temp.Next; // ссылка на следующий элемент после newNode устанавливаем на следующий элемент после x
                     temp.Next = newNode; //ссылка на элемент после temp указывает newNode 
                     //т.е. newNode вставляется после temp. newNode ссылается на элемент, который раньше находился после temp,а temp ссылается на newNode
@@ -109,6 +106,16 @@ namespace Example
                 temp = temp.Next;
             }
             Console.WriteLine();
+        }
+
+    public void WriteToFile(StreamWriter fileOut) //метод для записи списка в файл
+        {
+            temp = head;
+            while (temp != null)
+            {
+                fileOut.Write(temp.Inf + " ");
+                temp = temp.Next;
+            }
         }
     }
 
@@ -151,12 +158,7 @@ namespace Example
        
             using (StreamWriter fileOut = new StreamWriter("output.txt", true)) //вписываем измененный список в файл
             {
-                Node node = list.GetHead();
-                while (node != null)
-                {
-                    fileOut.Write(node.Inf + " ");
-                    node = node.Next;
-                }
+                list.WriteToFile(fileOut);
             }
 
             Console.WriteLine("\nРезультат записан в output.txt");
