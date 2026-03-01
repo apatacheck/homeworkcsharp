@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
 
-namespace Example
-{
-
     public class List
     {
         private class Node // Класс элемента списка
@@ -32,7 +29,6 @@ namespace Example
 
         private Node head;
         private Node tail;
-        private Node temp;
 
         public List() //инициализация списка
         {
@@ -43,7 +39,7 @@ namespace Example
 
         public void AddEnd(object nodeInfo) //добавление в конец
         {
-            temp = new Node(nodeInfo);
+            Node temp = new Node(nodeInfo);
             if (head == null)
             {
                 head = temp;
@@ -61,20 +57,18 @@ namespace Example
             if (head == null)
                 throw new Exception("Список пуст");
 
-            temp = head; //сохраняем inf для возвращения
+            object value = head.Inf; //сохраняем inf для возвращения
             head = head.Next; // голова - следующий после бывшей головы элемент
             if (head == null)
                 tail = null;
-
-            object value = temp.Inf;
             return value;
         }
 
-        public void Insert(object x, object y) //После каждого элемента со значением х вставить элемент со значением у
+    public void Insert(object x, object y) //После каждого элемента со значением х вставить элемент со значением у
         {
             if (head == null) return;
 
-            temp = head;
+            Node temp = head;
             while (temp != null)
             {
                 if (((IComparable)temp.Inf).CompareTo(x) == 0)  //проходимся по List и ищем элемент с inf = x
@@ -99,7 +93,7 @@ namespace Example
 
         public void Show()
         {
-            temp = head;
+            Node temp = head;
             while (temp != null)
             {
                 Console.Write(temp.Inf + " ");
@@ -110,7 +104,7 @@ namespace Example
 
     public void WriteToFile(StreamWriter fileOut) //метод для записи списка в файл
         {
-            temp = head;
+            Node temp = head;
             while (temp != null)
             {
                 fileOut.Write(temp.Inf + " ");
@@ -164,4 +158,3 @@ namespace Example
             Console.WriteLine("\nРезультат записан в output.txt");
         }
     }
-}
