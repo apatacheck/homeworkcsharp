@@ -60,7 +60,7 @@ namespace Example
             if (head == null)
                 throw new Exception("Список пуст");
 
-            temp = head; //сохраняем inf для возвращения
+            temp = head; //сохраняем inf для return
             head = head.Next; // голова - следующий после бывшей головы элемент
             if (head == null)
                 tail = null;
