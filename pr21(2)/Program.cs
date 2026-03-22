@@ -80,7 +80,7 @@ namespace BinaryTreeTask
             }
             Console.Write("Введите уровень дерева: ");
             int level = int.Parse(Console.ReadLine()!);
-            int sum = tree.SumEvenAtLevel(level);
+            int sum = tree.AnswerSum(level);
             Console.WriteLine("Cумма узлов с четным значением, расположенных на уровне "+ level + ": " + sum);
         }
     }
