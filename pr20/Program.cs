@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
 
-    public class List
+// Вариант 3: После каждого элемента со значением х вставить элемент со значением у.
+public class List
     {
         private class Node // Класс элемента списка
         {
-            private object inf; //значение элемента
+            private int inf; //значение элемента
             private Node next; //ссылка на следующий элемент
 
-            public Node(object nodeInfo)
+            public Node(int nodeInfo)
             {
                 inf = nodeInfo;
                 next = null;
@@ -20,7 +21,7 @@ using System.IO;
                 set { next = value; }
             }
 
-            public object Inf
+            public int Inf
             {
                 get { return inf; }
                 set { inf = value; }
@@ -37,7 +38,7 @@ using System.IO;
 
         }
 
-        public void AddEnd(object nodeInfo) //добавление в конец
+        public void AddEnd(int nodeInfo) //добавление в конец
         {
             Node temp = new Node(nodeInfo);
             if (head == null)
@@ -52,19 +53,19 @@ using System.IO;
             }
         }
 
-        public object TakeBegin() // извлечение из головы
+        public int TakeBegin() // извлечение из головы
         {
             if (head == null)
                 throw new Exception("Список пуст");
 
-            object value = head.Inf; //сохраняем inf для возвращения
+            int value = head.Inf; //сохраняем inf головы для возвращения
             head = head.Next; // голова - следующий после бывшей головы элемент
             if (head == null)
                 tail = null;
             return value;
         }
 
-    public void Insert(object x, object y) //После каждого элемента со значением х вставить элемент со значением у
+    public void Insert(int x, int y) //После каждого элемента со значением х вставить элемент со значением у
         {
             if (head == null) return;
 
@@ -86,7 +87,7 @@ using System.IO;
                 }
                 else
                 {
-                    temp = temp.Next; //проход по списку дальше, если элемент с нужным значением не был найден
+                    temp = temp.Next; //проход по списку дальше, если элемент с нужным значением не нашли
                 }
             }
         }
