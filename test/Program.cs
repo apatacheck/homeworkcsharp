@@ -38,7 +38,7 @@ namespace BinaryTreeTask
                 if (node == null) return;
                 if (node.left == null && node.right != null) //нет левого, но есть правый потомок
                 {
-                    sum += (int)node.inf;
+                    sum += node.inf;
                 }
                 SumOnlyRight(node.left, ref sum);
                 SumOnlyRight(node.right, ref sum);
