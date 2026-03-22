@@ -3,6 +3,7 @@ using System.IO;
 //АВЛ-дерево — это самобалансирующееся двоичное дерево поиска,
 //в котором для каждого узла высота левого и правого поддеревьев
 //отличается не более чем на 1.
+//20. является ли одно дерево поддеревом другого.
 namespace AVLSubtreeCheck
 {
     public class AVLTree
@@ -78,7 +79,7 @@ namespace AVLSubtreeCheck
                 t.NewHeight();
                 if (t.BalanceFactor == 2) //узел нужно повернуть влево, т.к. его правое поддерево перегружено
                 {
-                    if (t.right.BalanceFactor < 0) //проверка условия выполнения большого поворота налево
+                    if (t.right.BalanceFactor < 0) //правый потомок перегружен слева
                     {
                         RotationRight(ref t.right);
                     }
@@ -86,7 +87,7 @@ namespace AVLSubtreeCheck
                 }
                 if (t.BalanceFactor == -2) //узел нужно повернуть вправо, т.к. его левое поддерево перегружено
                 {
-                    if (t.left.BalanceFactor > 0)
+                    if (t.left.BalanceFactor > 0) // левый потомок перегружен справа
                     {
                         RotationLeft(ref t.left);
                     }
@@ -154,14 +155,7 @@ namespace AVLSubtreeCheck
                 {
                     return;
                 }
-                if (a == null || b == null) //один узел пустой, другой нет - не идентичны
-                {
-                    result = false;
-                    return;
-                }
-
-                //сравниваем значения узлов
-                if (a.inf != b.inf)
+                if (a == null || b == null || a.inf != b.inf)
                 {
                     result = false;
                     return;
@@ -231,16 +225,16 @@ namespace AVLSubtreeCheck
             }
 
             //на основе данных файла input2.txt создаем дерево B
-            using (StreamReader fileIn = new StreamReader("input2.txt"))
-            {
-                string content = fileIn.ReadToEnd();
-                string[] numbers = content.Split();
-                foreach (string num in numbers)
-                {
-                    treeB.Add(int.Parse(num));
-                }
-            }
-
+            //using (StreamReader fileIn = new StreamReader("input2.txt"))
+            //{
+               // string content = fileIn.ReadToEnd();
+                //string[] numbers = content.Split();
+                //foreach (string num in numbers)
+               // {
+                //    treeB.Add(int.Parse(num));
+                //}
+            //}
+          
             //проверяем, является ли дерево B поддеревом дерева A
             if (treeA.IsSubtree(treeB))
             {

@@ -38,9 +38,9 @@ namespace BinaryTreeTask
             {
                 if (t != null)
                 {
-                    if (level == k && (int)t.inf % 2 == 0) // найти сумму узлов с четным значением, расположенных на k-м уровне;
+                    if (level == k && t.inf % 2 == 0) // найти сумму узлов с четным значением, расположенных на k-м уровне;
                     {
-                        sum += (int)t.inf;
+                        sum += t.inf;
                     }
                     SumEvenAtLevel(t.left, level + 1, k, ref sum);
                     SumEvenAtLevel(t.right, level + 1, k, ref sum);
