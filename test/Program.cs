@@ -32,6 +32,17 @@ namespace BinaryTreeTask
                         Add(ref r.right, nodeInf); //правое поддерево
                 }
             }
+
+            public static void SumOnlyRight(Node node, ref int sum)
+            {
+                if (node == null) return;
+                if (node.left == null && node.right != null) //нет левого, но есть правый потомок
+                {
+                    sum += (int)node.inf;
+                }
+                SumOnlyRight(node.left, ref sum);
+                SumOnlyRight(node.right, ref sum);
+            }
         }
 
         private Node tree;
@@ -44,19 +55,10 @@ namespace BinaryTreeTask
         public int AnswerSum() // метод для поиска суммы значений узлов в дереве, имеющих только одно правое поддерево
         {
             int sum = 0;
-            SumOnlyRight(tree, ref sum); //вспомогательный метод для проверки условия + рекурсии
+            Node.SumOnlyRight(tree, ref sum); //вспомогательный метод для проверки условия + рекурсии
             return sum;
         }
-        private void SumOnlyRight(Node node, ref int sum)
-        {
-            if (node == null) return;
-            if (node.left == null && node.right != null) //нет левого, но есть правый потомок
-            {
-                sum += (int)node.inf;
-            }
-            SumOnlyRight(node.left, ref sum);
-            SumOnlyRight(node.right, ref sum);
-        }
+ 
     }
 
     class Program
