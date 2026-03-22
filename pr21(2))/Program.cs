@@ -8,18 +8,18 @@ namespace BinaryTreeTask
     {
         private class Node
         {
-            public object inf;
+            public int inf;
             public Node left;
             public Node right;
 
-            public Node(object nodeInf)
+            public Node(int nodeInf)
             {
                 inf = nodeInf; //значение узла
                 left = null; //левый потомок
                 right = null; //правый потомок
             }
 
-            public static void Add(ref Node r, object nodeInf)
+            public static void Add(ref Node r, int nodeInf)
             {
                 if (r == null) //если корень или найдено местоположение узла
                 {
@@ -50,7 +50,7 @@ namespace BinaryTreeTask
 
         private Node tree;
 
-        public void Add(object item)
+        public void Add(int item)
         {
             Node.Add(ref tree, item); //местоположение нового узла определяется относительно корня дерева
         }
