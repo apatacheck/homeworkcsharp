@@ -4,15 +4,24 @@
 //2. Создать производные классы: Rectangle(прямоугольник), Circle(круг), Triangle
 //(треугольник) со своими методами вычисления площади и периметра.
 //3. Создать массив n фигур и вывести полную информацию о фигурах на экран. 
-using System;
-using System.IO;
-//13. сумму значений узлов в дереве, имеющих только одно правое поддерево;
+
 namespace FigureTask
 {
-    abstract class Figure
+    public class Rectangle : Figure
     {
-        abstract public void Show();
-        abstract public float Area();
-        abstract public float Perimeter();
+        private double width, height;
+        public Rectangle(double width, double height)
+        {
+            this.width = width;
+            this.height = height;
+        }
+
+        public override double GetArea() => width * height;
+        public override double GetPerimeter() => 2 * (width + height);
+
+        public override void Print()
+        {
+            Console.WriteLine($"Прямоугольник: ширина={width}, высота={height}, " + $"площадь={GetArea():F2}, периметр={GetPerimeter():F2}");
+        }
     }
 }
