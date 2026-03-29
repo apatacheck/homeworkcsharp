@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-//АВЛ-дерево — это самобалансирующееся двоичное дерево поиска,
-//в котором для каждого узла высота левого и правого поддеревьев
-//отличается не более чем на 1.
+//В файлах input1.txt и input2.txt хранится последовательности целых чисел. По файлу
+//input1.txt построить АВЛ дерево А, по файлу input2.txt построить АВЛ дерево В. 
 //20. является ли одно дерево поддеревом другого.
 namespace AVLSubtreeCheck
 {
@@ -225,16 +224,16 @@ namespace AVLSubtreeCheck
             }
 
             //на основе данных файла input2.txt создаем дерево B
-            //using (StreamReader fileIn = new StreamReader("input2.txt"))
-            //{
-               // string content = fileIn.ReadToEnd();
-                //string[] numbers = content.Split();
-                //foreach (string num in numbers)
-               // {
-                //    treeB.Add(int.Parse(num));
-                //}
-            //}
-          
+            using (StreamReader fileIn = new StreamReader("input2.txt"))
+            {
+                string content = fileIn.ReadToEnd();
+                string[] numbers = content.Split();
+                foreach (string num in numbers)
+                {
+                    treeB.Add(int.Parse(num));
+                }
+            }
+
             //проверяем, является ли дерево B поддеревом дерева A
             if (treeA.IsSubtree(treeB))
             {

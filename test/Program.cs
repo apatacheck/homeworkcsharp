@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-
+//13. сумму значений узлов в дереве, имеющих только одно правое поддерево;
 namespace BinaryTreeTask
 {
     public class BinaryTree
@@ -67,7 +67,7 @@ namespace BinaryTreeTask
         {
             BinaryTree tree = new BinaryTree();
 
-            using (StreamReader fileIn = new StreamReader("input2.txt"))
+            using (StreamReader fileIn = new StreamReader("input3.txt"))
             {
                 string content = fileIn.ReadToEnd();
                 string[] numbers = content.Split();

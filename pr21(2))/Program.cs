@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net.Security;
-
+//13. найти сумму узлов c четным значением, расположенных на k-уровне;
 namespace BinaryTreeTask
 {
     public class BinaryTree
@@ -40,8 +40,11 @@ namespace BinaryTreeTask
                 {
                     if (level == k && t.inf % 2 == 0) // найти сумму узлов с четным значением, расположенных на k-м уровне;
                     {
+                        Console.WriteLine("Узел: " + t.inf + "Сумма: " + sum);
                         sum += t.inf;
+         
                     }
+
                     SumEvenAtLevel(t.left, level + 1, k, ref sum);
                     SumEvenAtLevel(t.right, level + 1, k, ref sum);
                 }
@@ -69,7 +72,7 @@ namespace BinaryTreeTask
         {
             BinaryTree tree = new BinaryTree();
 
-            using (StreamReader fileIn = new StreamReader("input.txt"))
+            using (StreamReader fileIn = new StreamReader("input4.txt"))
             {
                 string content = fileIn.ReadToEnd();
                 string[] numbers = content.Split();
