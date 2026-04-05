@@ -1,30 +1,46 @@
-﻿//Задание 1
-//1. Создать абстрактный класс Figure с методами вычисления площади и периметра, а также
-//методом, выводящим информацию о фигуре на экран.
-//2. Создать производные классы: Rectangle(прямоугольник), Circle(круг), Triangle
-//(треугольник) со своими методами вычисления площади и периметра.
-//3. Создать массив n фигур и вывести полную информацию о фигурах на экран. 
+﻿
 namespace FigureTask
 {
+    [Serializable]
     public class Circle : Figure
     {
-        private double radius;
+        public double Radius { get; set; }
+
+        //конструктор по умолчанию
+        public Circle()
+        {
+            Radius = 1;
+        }
+
+        //конструктор с параметрами
         public Circle(double radius)
         {
-            if (radius <= 0 )
-                throw new ArgumentException("Радиус круга должны быть больше 0");
-            this.radius = radius;
+            if (radius <= 0)
+            {
+                throw new ArgumentException("Некорректный круг");
+            }
+            Radius = radius;
         }
-        public override double GetArea() {
-            return Math.PI* radius *radius;
+
+        //конструктор копирования
+        public Circle(Circle other)
+        {
+            Radius = other.Radius;
         }
+
+        public override double GetArea()
+        {
+            return Math.PI * Radius * Radius;
+        }
+
         public override double GetPerimeter()
         {
-            return 2 * Math.PI * radius;
+            return 2 * Math.PI * Radius;
         }
-        public override void Print()
+
+        public override string ToString()
         {
-            Console.WriteLine($"Круг: радиус={radius}, площадь={GetArea():F2}, " + $"периметр={GetPerimeter():F2}");
+            return $"Круг: радиус={Radius:F2}, площадь={GetArea():F2}, " +  $"периметр={GetPerimeter():F2}";
         }
     }
 }

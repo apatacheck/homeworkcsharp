@@ -4,34 +4,57 @@
 //2. Создать производные классы: Rectangle(прямоугольник), Circle(круг), Triangle
 //(треугольник) со своими методами вычисления площади и периметра.
 //3. Создать массив n фигур и вывести полную информацию о фигурах на экран. 
-
 namespace FigureTask
 {
+    [Serializable]
     public class Triangle : Figure
     {
-        private double a, b, c;
+        public double A { get; set; }
+        public double B { get; set; }
+        public double C { get; set; }
+
+        //конструктор по умолчанию
+        public Triangle()
+        {
+            A = 3;
+            B = 4;
+            C = 5;
+        }
+
+        //конструктор с параметрами
         public Triangle(double a, double b, double c)
         {
-            if (a <= 0 || b <= 0 || c <= 0)
-                throw new ArgumentException("Стороны треугольника должны быть больше 0");
-            this.a = a;
-            this.b = b;
-            this.c = c;
+            if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
+                throw new ArgumentException("Некорректный треугольник");
+            }
+            A = a;
+            B = b;
+            C = c;
         }
+
+        //конструктор копирования
+        public Triangle(Triangle other)
+        {
+            A = other.A;
+            B = other.B;
+            C = other.C;
+        }
+
 
         public override double GetArea()
         {
-            double p = (a + b + c) / 2;
-            return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+            double p = (A + B + C) / 2;
+            return Math.Sqrt(p * (p - A) * (p - B) * (p - C));
         }
 
-        public override double GetPerimeter() 
-        { 
-            return (a + b + c);
-        }
-        public override void Print()
+        public override double GetPerimeter()
         {
-            Console.WriteLine($"Треугольник: стороны ({a}, {b}, {c}), " + $"площадь={GetArea():F2}, периметр={GetPerimeter():F2}");
+            return A + B + C;
+        }
+
+        public override string ToString()
+        {
+            return $"Треугольник: стороны ({A:F2}, {B:F2}, {C:F2}), " + $"площадь={GetArea():F2}, периметр={GetPerimeter():F2}";
         }
     }
 }

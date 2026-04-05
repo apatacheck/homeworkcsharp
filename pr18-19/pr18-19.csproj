@@ -6,6 +6,8 @@
     <RootNamespace>pr18_19</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
+	<NoWarn>SYSLIB0011</NoWarn>
   </PropertyGroup>
 
 </Project>
