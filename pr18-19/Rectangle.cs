@@ -3,7 +3,17 @@
     [Serializable]
     public class Rectangle : Figure
     {
-        private double width, height;
+        public double width;
+        public double height;
+
+        //конструктор по умолчанию
+        public Rectangle()
+        {
+            width = 1;
+            height = 1;
+        }
+
+        //конструктор с параметрами 
         public Rectangle(double width, double height)
         {
             if (width <= 0 || height <= 0)
@@ -14,8 +24,22 @@
             this.height = height;
         }
 
-        public override double GetArea() => width * height;
-        public override double GetPerimeter() => 2 * (width + height);
+        //конструктор копирования
+        public Rectangle(Rectangle other)
+        {
+            width = other.width;
+            height = other.height;
+        }
+
+        public override double GetArea()
+        {
+            return width * height;
+        }
+
+        public override double GetPerimeter()
+        {
+            return 2 * (width + height);
+        }
 
         public override string ToString()
         {
