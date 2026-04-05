@@ -18,7 +18,6 @@ namespace FigureTask
                     if (line.Trim() == "") continue;
                     string[] parts = line.Split(' ');
                     string type = parts[0].ToLower();
-
                     if (type == "rectangle")
                         figures.Add(new Rectangle(double.Parse(parts[1]), double.Parse(parts[2])));
                     else if (type == "circle")

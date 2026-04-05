@@ -150,7 +150,7 @@ namespace AVLSubtreeCheck
             public static void IsIdentical(Node a, Node b, ref bool result)
             {
                 if (!result) return; //если уже нашли false - выходим
-                if (a == null && b == null) //оба узла пустые - идентичны
+                if (a == null && b == null) //оба узла пустые= идентичны
                 {
                     return;
                 }
@@ -211,8 +211,6 @@ namespace AVLSubtreeCheck
         {
             AVLTree treeA = new AVLTree();
             AVLTree treeB = new AVLTree();
-
-            //на основе данных файла input1.txt создаем дерево A
             using (StreamReader fileIn = new StreamReader("input1.txt"))
             {
                 string content = fileIn.ReadToEnd();
@@ -222,8 +220,6 @@ namespace AVLSubtreeCheck
                     treeA.Add(int.Parse(num));
                 }
             }
-
-            //на основе данных файла input2.txt создаем дерево B
             using (StreamReader fileIn = new StreamReader("input2.txt"))
             {
                 string content = fileIn.ReadToEnd();

@@ -12,13 +12,20 @@ namespace FigureTask
         private double width, height;
         public Rectangle(double width, double height)
         {
+            if (width <= 0 || height <= 0)
+                throw new ArgumentException("Стороны прямоугольника должны быть больше 0");
             this.width = width;
             this.height = height;
         }
 
-        public override double GetArea() => width * height;
-        public override double GetPerimeter() => 2 * (width + height);
-
+        public override double GetArea()
+        {
+            return width* height;
+        }
+        public override double GetPerimeter()
+        {
+            return 2 * (width + height);
+        }
         public override void Print()
         {
             Console.WriteLine($"Прямоугольник: ширина={width}, высота={height}, " + $"площадь={GetArea():F2}, периметр={GetPerimeter():F2}");
