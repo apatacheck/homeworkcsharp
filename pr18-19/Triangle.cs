@@ -1,38 +1,14 @@
-﻿
-namespace FigureTask
+﻿namespace FigureTask
 {
     [Serializable]
     public class Triangle : Figure
     {
-        public double A { get; set; }
-        public double B { get; set; }
-        public double C { get; set; }
-
-        //конструктор по умолчанию
-        public Triangle()
-        {
-            A = 3;
-            B = 4;
-            C = 5;
-        }
-
-        //конструктор с параметрами
+        private double a, b, c;
         public Triangle(double a, double b, double c)
         {
-            if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
-                throw new ArgumentException("Некорректный треугольник");
-            }
-            A = a;
-            B = b;
-            C = c;
-        }
-
-        //конструктор копирования
-        public Triangle(Triangle other)
-        {
-            A = other.A;
-            B = other.B;
-            C = other.C;
+            this.a = a;
+            this.b = b;
+            this.c = c;
         }
 
 

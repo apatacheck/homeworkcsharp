@@ -1,46 +1,17 @@
-﻿
-namespace FigureTask
+﻿namespace FigureTask
 {
     [Serializable]
     public class Circle : Figure
     {
-        public double Radius { get; set; }
+        private double radius;
+        public Circle(double radius) => this.radius = radius;
 
-        //конструктор по умолчанию
-        public Circle()
-        {
-            Radius = 1;
-        }
-
-        //конструктор с параметрами
-        public Circle(double radius)
-        {
-            if (radius <= 0)
-            {
-                throw new ArgumentException("Некорректный круг");
-            }
-            Radius = radius;
-        }
-
-        //конструктор копирования
-        public Circle(Circle other)
-        {
-            Radius = other.Radius;
-        }
-
-        public override double GetArea()
-        {
-            return Math.PI * Radius * Radius;
-        }
-
-        public override double GetPerimeter()
-        {
-            return 2 * Math.PI * Radius;
-        }
+        public override double GetArea() => Math.PI * radius * radius;
+        public override double GetPerimeter() => 2 * Math.PI * radius;
 
         public override string ToString()
         {
-            return $"Круг: радиус={Radius:F2}, площадь={GetArea():F2}, " +  $"периметр={GetPerimeter():F2}";
+            Console.WriteLine($"Круг: радиус={radius}, площадь={GetArea():F2}, " + $"периметр={GetPerimeter():F2}");
         }
     }
 }
