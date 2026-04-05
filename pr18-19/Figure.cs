@@ -7,21 +7,33 @@
 
 namespace FigureTask
 {
-    public abstract class Figure : IComparable
+    [Serializable]
+    public abstract class Figure : IComparable<Figure>
     {
+  
         public abstract double GetArea();
         public abstract double GetPerimeter();
-        public abstract void  Print();
+        public abstract override string ToString();
 
-        public int CompareTo(object obj)
+        public int CompareTo(Figure other)
         {
-            Figure other = (Figure)obj;   // приведение
-            if (this.GetArea() == other.GetArea())
-                return 0;
-            else if (this.GetArea() > other.GetArea())
-                return 1;
-            else
-                return -1;
+            if (other == null) return 1;
+            return this.GetArea().CompareTo(other.GetArea()); //сравниваем по площади 
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Figure other = (Figure)obj;
+            return this.GetArea() == other.GetArea() &&
+                   this.GetPerimeter() == other.GetPerimeter();
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(GetArea(), GetPerimeter());
         }
     }
 }
