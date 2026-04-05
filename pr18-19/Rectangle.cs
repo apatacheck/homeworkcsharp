@@ -1,11 +1,10 @@
-﻿
-namespace FigureTask
+﻿namespace FigureTask
 {
     [Serializable]
     public class Rectangle : Figure
     {
-        public double width { get; set; }
-        public double height { get; set; }
+        public double width;
+        public double height;
 
         //конструктор по умолчанию
         public Rectangle()
@@ -25,10 +24,24 @@ namespace FigureTask
             this.height = height;
         }
 
-        public override double GetArea() => width * height;
-        public override double GetPerimeter() => 2 * (width + height);
+        //конструктор копирования
+        public Rectangle(Rectangle other)
+        {
+            width = other.width;
+            height = other.height;
+        }
 
-        public override void Print()
+        public override double GetArea()
+        {
+            return width * height;
+        }
+
+        public override double GetPerimeter()
+        {
+            return 2 * (width + height);
+        }
+
+        public override string ToString()
         {
             return $"Прямоугольник: ширина={width:F2}, высота={height:F2}, " + $"площадь={GetArea():F2}, периметр={GetPerimeter():F2}";
         }

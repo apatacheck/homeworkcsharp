@@ -23,8 +23,6 @@ namespace FigureTask
             }
             Console.WriteLine();
         }
-                }
-                }
 
         static void Main(string[] args)
         {
@@ -53,8 +51,8 @@ namespace FigureTask
             }
 
 
-            objects.Sort();
-            Console.WriteLine("Фигуры отсортированы");
+            //objects.Sort();
+            //Console.WriteLine("Фигуры отсортированы");
             //Print(objects);
 
             using (FileStream f = new FileStream("figures.dat", FileMode.OpenOrCreate))
