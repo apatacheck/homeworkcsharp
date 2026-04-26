@@ -10,7 +10,7 @@ namespace FigureTask
     [Serializable]
     public abstract class Figure : IComparable<Figure>
     {
-  
+
         public abstract double GetArea();
         public abstract double GetPerimeter();
         public abstract override string ToString();
