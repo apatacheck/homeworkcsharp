@@ -4,6 +4,9 @@
 //2. Создать производные классы: Rectangle(прямоугольник), Circle(круг), Triangle
 //(треугольник) со своими методами вычисления площади и периметра.
 //3. Создать массив n фигур и вывести полную информацию о фигурах на экран. 
+//Задание 2
+//В абстрактном классе Figure реализовать метод CompareTo так, чтобы
+//можно было отсортировать объекты по их площадям. 
 
 namespace FigureTask
 {
@@ -18,7 +21,7 @@ namespace FigureTask
         public int CompareTo(Figure other)
         {
             if (other == null) return 1;
-            return this.GetArea().CompareTo(other.GetArea()); //сравниваем по площади 
+            return this.GetArea().CompareTo(other.GetArea()); //сравниваем по площади, используем такую запись т.к. для double уже существует CompareTo
         }
 
         public override bool Equals(object obj)
@@ -27,8 +30,7 @@ namespace FigureTask
                 return false;
 
             Figure other = (Figure)obj;
-            return this.GetArea() == other.GetArea() &&
-                   this.GetPerimeter() == other.GetPerimeter();
+            return this.GetArea() == other.GetArea() && this.GetPerimeter() == other.GetPerimeter();
         }
 
         public override int GetHashCode()

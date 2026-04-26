@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.ExceptionServices;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FigureTask
@@ -18,11 +19,36 @@ namespace FigureTask
                 Console.WriteLine("Список объектов:");
                 foreach (Figure item in objects)
                 {
-                    Console.WriteLine(item.ToString());
+                    Console.WriteLine(item);
                 }
             }
             Console.WriteLine();
         }
+
+        //static List<Figure> Input()
+        //{
+        //    List<Figure> objects = new List<Figure>();
+        //    while (true)
+        //    {
+              
+        //        string[] figure = (Console.ReadLine()!).Split()!;
+        //        if (figure.Length == 0)
+        //            break;
+        //        switch (figure[0])
+        //        {
+        //            case "Rectangle":
+        //                objects.Add(new Rectangle(double.Parse(figure[1]), double.Parse(figure[2])));
+        //                break;
+        //            case "Circle":
+        //                objects.Add(new Circle(double.Parse(figure[1])));
+        //                break;
+        //            case "Triangle":
+        //                objects.Add(new Triangle(double.Parse(figure[1]), double.Parse(figure[2]), double.Parse(figure[3])));
+        //                break;
+        //        }
+        //    }
+        //    return objects;
+        //}
 
         static void Main(string[] args)
         {
@@ -51,9 +77,9 @@ namespace FigureTask
             }
 
 
-            //objects.Sort();
-            //Console.WriteLine("Фигуры отсортированы");
-            //Print(objects);
+            objects.Sort();
+            Console.WriteLine("Фигуры отсортированы");
+            Print(objects);
 
             using (FileStream f = new FileStream("figures.dat", FileMode.OpenOrCreate))
             {
