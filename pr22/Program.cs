@@ -7,7 +7,7 @@ namespace pr22
         {
             Graph g = new Graph("input1.txt");
             
-            Console.WriteLine("Graph:");
+            Console.WriteLine("Граф:");
             g.Show();
             Console.WriteLine("Введите номер вершины, для которой нужно найти смежные:");
             int v = int.Parse(Console.ReadLine()!);

@@ -71,8 +71,7 @@ namespace pr22
                     count++;
                 }
             }
-            Console.WriteLine();
-            Console.WriteLine("Количество смежных вершин: {0}", count);
+            Console.WriteLine(" \nКоличество смежных вершин: {0}", count);
 
         }
     }
