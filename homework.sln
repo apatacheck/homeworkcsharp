@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11626.88 stable
+VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pr4", "homework\pr4.csproj", "{97F5A4E1-DC20-4BB2-B063-5735E270E847}"
 EndProject
@@ -48,6 +48,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pr18-19", "pr18-19\pr18-19.csproj", "{E2CE6469-5CCB-4026-9192-EAC45A0AAEE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pr22", "pr22\pr22.csproj", "{68FCF225-A85C-447E-82D5-C8F861532EDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pr22(2)", "pr22(2)\pr22(2).csproj", "{61F3F1EE-0610-44F4-A0B4-E4B67F3E38BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,10 @@ Global
 		{68FCF225-A85C-447E-82D5-C8F861532EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68FCF225-A85C-447E-82D5-C8F861532EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68FCF225-A85C-447E-82D5-C8F861532EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F3F1EE-0610-44F4-A0B4-E4B67F3E38BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F3F1EE-0610-44F4-A0B4-E4B67F3E38BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F3F1EE-0610-44F4-A0B4-E4B67F3E38BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F3F1EE-0610-44F4-A0B4-E4B67F3E38BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
