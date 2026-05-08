@@ -11,7 +11,7 @@ namespace pr22_2_
             Console.WriteLine();
             Console.Write("Введите L: ");
             int L = int.Parse(Console.ReadLine()!);
-            g.PrintPairsWithinDistance(L);
+            g.PrintPairs(L);
 
             Console.ReadKey();
         }

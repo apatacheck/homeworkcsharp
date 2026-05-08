@@ -101,7 +101,7 @@ namespace pr22_2_
             }
         }
 
-        public void PrintPairsWithinDistance(int L)
+        public void PrintPairs(int L)
         {
             long[,] dist = graph.Floyd();
             int n = graph.Size;
